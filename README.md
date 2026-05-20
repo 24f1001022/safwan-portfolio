@@ -70,8 +70,8 @@ To initialize and launch this neural project locally:
 
 1. **Clone the Core Payload**
    ```bash
-   git clone https://github.com/24f1001022/Tds.git
-   cd roe/portfolio
+   git clone https://github.com/24f1001022/safwan-portfolio.git
+   cd safwan-portfolio
    ```
 
 2. **Initialize Dependencies**
