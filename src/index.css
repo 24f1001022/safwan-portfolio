@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --color-on-secondary-container: #f9f7ff;
+  --color-on-tertiary-fixed: #320047;
+  --color-tertiary-fixed-dim: #ebb2ff;
+  --color-surface-tint: #00dbe7;
+  --color-on-surface-variant: #b9cacb;
+  --color-surface: #0d1515;
+  --color-on-tertiary-container: #9b00d2;
+  --color-on-secondary-fixed: #001849;
+  --color-surface-container-low: #151d1e;
+  --color-on-secondary-fixed-variant: #003fa4;
+  --color-secondary-container: #0266ff;
+  --color-on-tertiary: #520071;
+  --color-secondary: #b3c5ff;
+  --color-inverse-primary: #00696f;
+  --color-on-primary-fixed-variant: #004f54;
+  --color-primary-fixed: #74f5ff;
+  --color-tertiary: #fff5fc;
+  --color-on-tertiary-fixed-variant: #74009f;
+  --color-error: #ffb4ab;
+  --color-surface-variant: #2e3637;
+  --color-on-primary: #00363a;
+  --color-inverse-on-surface: #2a3232;
+  --color-surface-dim: #0d1515;
+  --color-outline: #849495;
+  --color-surface-container-high: #232b2c;
+  --color-background: #0d1515;
+  --color-surface-container-lowest: #080f10;
+  --color-on-error-container: #ffdad6;
+  --color-secondary-fixed-dim: #b3c5ff;
+  --color-primary: #e1fdff;
+  --color-outline-variant: #3a494b;
+  --color-on-surface: #dce4e4;
+  --color-inverse-surface: #dce4e4;
+  --color-primary-fixed-dim: #00dbe7;
+  --color-surface-container-highest: #2e3637;
+  --color-on-background: #dce4e4;
+  --color-tertiary-fixed: #f8d8ff;
+  --color-tertiary-container: #f5ceff;
+  --color-on-error: #690005;
+  --color-on-primary-fixed: #002022;
+  --color-secondary-fixed: #dae1ff;
+  --color-on-primary-container: #006a71;
+  --color-primary-container: #00f2ff;
+  --color-surface-bright: #333b3b;
+  --color-surface-container: #192122;
+  --color-on-secondary: #002b75;
+  --color-error-container: #93000a;
+
+  --spacing-margin-desktop: 80px;
+  --spacing-stack-gap: 48px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 20px;
+  --spacing-unit: 8px;
+  --spacing-container-max: 1440px;
+
+  --font-code-sm: "JetBrains Mono";
+  --font-headline-lg: "Sora";
+  --font-headline-lg-mobile: "Sora";
+  --font-body-md: "Geist";
+  --font-label-caps: "JetBrains Mono";
+  --font-display-xl: "Sora";
+}
+
+@layer base {
+  body {
+    background-color: #050505;
+    color: #dce4e4;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(13, 21, 21, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(0, 242, 255, 0.5), transparent 50%);
+    z-index: -1;
+  }
+  
+  .holo-btn {
+    border: 1px solid #00f2ff;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .holo-btn:hover {
+    background: rgba(0, 242, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+  }
+  .holo-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: 0; width: 100%; height: 200%;
+    background: linear-gradient(to bottom, transparent, rgba(0,242,255,0.2), transparent);
+    transform: translateY(-100%);
+    transition: transform 0.5s linear;
+  }
+  .holo-btn:hover::after {
+    transform: translateY(100%);
+  }
+
+  .hud-panel {
+    background: rgba(13, 21, 21, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .hud-border-glow {
+    border: 1px solid transparent;
+    background-image: linear-gradient(rgba(13, 21, 21, 0.8), rgba(13, 21, 21, 0.8)), conic-gradient(from 180deg at 50% 50%, rgba(0, 242, 255, 0) 0deg, rgba(0, 242, 255, 0.5) 180deg, rgba(0, 242, 255, 0) 360deg);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+  
+  .neon-card {
+    transition: all 0.3s ease;
+  }
+  .neon-card:hover {
+    border-color: #0066FF;
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+  }
+
+  .scanline-input:focus {
+    border-bottom-color: #00F2FF;
+    box-shadow: 0 4px 15px -3px rgba(0, 242, 255, 0.3);
+    outline: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
