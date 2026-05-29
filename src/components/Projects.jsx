@@ -37,7 +37,7 @@ const projects = [
     desc: "Parking reservation system using Flask, Jinja2, and Chart.js.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCnlJ3GSEVvsIOFYoHHlgHEl94TwZYOZ98z8wPrtB1VEngy-mdZD1rtOfcs13UMvqk5-lz7Ow6txMt2eQxS61UV7lAHm0Lyil2YnKYIMsVMEQJxo0TGCYfXKXTV_lgcZHFdovmeLR_Kmw2F7P3F76hotWPVEk4Kp3P1NstIGE0rkZvQpGtus1sIA4S-Mrp9eL23JyaLPu9I1gzgP3O14zRRiv5T2J92R752VItz5Qj3KJDyx-5JOe_3iLl-x4MQjJz7amr2nknqpw8",
     github: "https://github.com/24f1001022/parkify",
-    live: null
+    live: "https://parkify-vuf8.vercel.app/login"
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ const projects = [
     desc: "Deep Learning project using CNN/CRNN and Audio Spectrogram Transformers.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCuEP8kjhp7eClf5US7rg7uQiJ-9fHV7ZWy6QBIYH710UyE1hqH-UAqxDmj99HoDDzpu-o46NI0aa6K1S1gTZH9QrszbY77N4ijD7emJdg8aH7p3_8CJ2nY4EI_FaYgRmLWtfN77XTC7JZdLg-iSCY0CpZboOiTbxr_quu9ll-AzzPh-7W8XMxYYwiXaGyVNA_o0YbxyAbWKKwkC_GhEjoj7IRhMPt59wftJYXjgQ02TFSsrhE7EE7EfzFRjZXiDt7n71DZsqxZCCw",
     github: "https://github.com/24f1001022/DL-24f1001022-notebook-t12026",
-    live: null
+    live: "https://huggingface.co/spaces/Safwan011/music-genre-spectrograph"
   },
   {
     id: 7,
