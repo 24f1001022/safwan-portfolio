@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { Code, ExternalLink } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { Code, ExternalLink, AlertTriangle, X } from 'lucide-react';
 
 const projects = [
   {
@@ -46,7 +46,7 @@ const projects = [
     desc: "Flask-based platform with SQLAlchemy, Celery, and Redis.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBk_ttfjB9nSSoXcpEItmwQlUClBOOzXo-gX1VLI_J3V483juDUaz9Na7O6xvrf9WOs7uwP2S5oCP8xLfgspIwnPA4soyObWtVX_9MxkDx2D1pmmTp51Qf6ZaQLyA5KfrdDlvirkXhyqL6Qj3MxXwUSU6Amv4lfXrklGSnrpZ__KTZM2eencd2SjackCdudFTspd3xHPvmS2Rt60EQIKMxzHRfao2MiQS4v7hhfmuzgOVxB3r2acS9ieEpIBNBBKiSbPKAQYvw8BHk",
     github: "https://github.com/24f1001022/HealthHub",
-    live: null
+    live: "https://health-hub-gilt.vercel.app/login"
   },
   {
     id: 6,
@@ -64,11 +64,20 @@ const projects = [
     desc: "Machine Learning project using Scikit-learn, XGBoost, LightGBM, and ensemble-based Voting Classifiers.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDk_d9SErYETwHCYBRZ1hCH_gCXw0WibDr5Bpkg9fcQPtfbhVTy_Ne2kumcr6jdF3k_45N8fGXyYWiSOq51LJfnQ9IUO5h_fMeocrTvZDiOvCVUV9ZWK4-bTh4Vi0VC-AGxRJjxumC5uQ4ZQGc3cM0XU_cZrrC_JV13Vsb2Vg3KboY5Oc81VTU4zLSzGr6sq8WCezdraoh2vwjTOH7HFHukYkJ48c3RPARmkMQ6xEZtPodIgjSjx-l-Xcl3xbnBne10bCCCtAUXGhc",
     github: "https://github.com/24f1001022/ML---Comment-Category-Prediction",
-    live: null
+    live: "https://huggingface.co/spaces/Safwan011/comment-classifier-hud"
+  },
+  {
+    id: 8,
+    title: "Multi Source RAG Chat Bot",
+    date: "06/2026",
+    desc: "A multi-source RAG chatbot for answering questions across various documents.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBSZcE4xBWEPdKSctonwLEEo1i9CzvTdh_8rp_p0mzRJ2rUjw359Qs5fLmNjae0hgRYMp7G-5lsZnEhePiTADHSKUgrSaCO7fQ9CMizGoziGSCSXxpXywyY1ieSXlQVUqJJrzWmg6p6otcuT7aW6BQfMAS5TzjXeWpRWUo4IishetUvyEnMqgf2l06glyUErsOhLVrh3GT7zlIQoZoyi9yY9g3a3hXob8JO7sWQsSEXo6m3db8IhmBtqlgX7E8onrU9fscmPEdgOfo",
+    github: "https://github.com/24f1001022/multi-source-chatbot",
+    live: "https://multi-source-chatbot.vercel.app/"
   }
 ];
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, onLiveClick }) => {
   const ref = useRef(null);
   
   // Track mouse position for dynamic 3D tilt
@@ -162,16 +171,14 @@ const ProjectCard = ({ project, index }) => {
                 </span>
               )}
               {project.live ? (
-                <motion.a 
-                  href={project.live}
-                  target="_blank"
-                  rel="noreferrer"
+                <motion.button 
+                  onClick={() => onLiveClick(project.live)}
                   whileHover={{ scale: 1.2, color: "#74f5ff" }}
                   className="text-outline cursor-pointer transition-colors" 
                   title="Live Deployment"
                 >
                   <ExternalLink size={20} />
-                </motion.a>
+                </motion.button>
               ) : (
                 <span className="text-outline/30 cursor-not-allowed" title="Deployment Offline">
                   <ExternalLink size={20} />
@@ -190,8 +197,63 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const Projects = () => {
+  const [disclaimerLink, setDisclaimerLink] = useState(null);
+
   return (
     <section id="projects" className="relative z-10 py-20">
+      {/* Disclaimer Modal */}
+      <AnimatePresence>
+        {disclaimerLink && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="hud-panel neon-card rounded-2xl p-6 max-w-md w-full relative border border-primary-fixed/30 shadow-[0_0_30px_rgba(0,242,255,0.2)]"
+            >
+              <button 
+                onClick={() => setDisclaimerLink(null)}
+                className="absolute top-4 right-4 text-outline hover:text-primary-fixed transition-colors"
+              >
+                <X size={20} />
+              </button>
+              <div className="flex items-center gap-3 mb-4 text-secondary-container">
+                <AlertTriangle size={24} />
+                <h3 className="font-headline-lg-mobile text-xl">SYSTEM_NOTICE</h3>
+              </div>
+              <p className="font-body-md text-on-surface-variant mb-6 text-sm leading-relaxed">
+                You are about to access a live deployment. Please note:
+                <br/><br/>
+                <span className="text-primary-fixed-dim/90 block mb-2">• Some features may not work exactly as stated due to limitations on trial/free tiers.</span>
+                <span className="text-primary-fixed-dim/90 block">• Projects hosted on free tiers may take a few moments to start up if they have gone to sleep.</span>
+              </p>
+              <div className="flex gap-4">
+                <button 
+                  onClick={() => setDisclaimerLink(null)}
+                  className="flex-1 border border-white/10 hover:border-white/30 text-outline py-2 rounded font-code-sm uppercase tracking-widest text-[10px] transition-colors cursor-pointer"
+                >
+                  ABORT
+                </button>
+                <a 
+                  href={disclaimerLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setDisclaimerLink(null)}
+                  className="flex-1 holo-btn text-primary-fixed py-2 rounded font-code-sm uppercase tracking-widest text-[10px] flex items-center justify-center hover:shadow-[0_0_15px_rgba(116,245,255,0.4)] transition-all cursor-pointer"
+                >
+                  PROCEED
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="mb-16">
         <motion.span 
           className="font-code-sm text-[12px] text-primary-fixed-dim uppercase tracking-widest"
@@ -214,7 +276,7 @@ const Projects = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 perspective-1000" style={{ perspective: '1500px' }}>
         {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <ProjectCard key={project.id} project={project} index={index} onLiveClick={setDisclaimerLink} />
         ))}
       </div>
     </section>
