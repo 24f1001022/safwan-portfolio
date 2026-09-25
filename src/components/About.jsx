@@ -21,57 +21,112 @@ const About = () => {
   };
 
   return (
-    <section className="relative mt-20 mb-32 z-10">
+    <section className="relative mt-12 mb-28 z-10">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <motion.span 
+            className="font-code-sm text-[11px] text-primary-fixed-dim uppercase tracking-widest block"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            [ 01 // METRICS & BACKGROUND ]
+          </motion.span>
+          <motion.h2 
+            className="font-headline-lg text-[28px] md:text-[36px] text-primary font-bold mt-1"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Engineering Dossier
+          </motion.h2>
+        </div>
+      </div>
+
+      {/* Metrics Row */}
       <motion.div 
-        className="absolute -top-10 right-0 font-code-sm text-primary-fixed-dim/50 tracking-widest text-[12px]"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        [ METRICS_OVERVIEW ]
-      </motion.div>
-      
-      <motion.div 
-        className="glass-panel glow-border rounded-xl p-6 sm:p-8 md:p-12 relative overflow-hidden"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-50px" }}
         variants={containerVariants}
       >
-        <div className="flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between items-center gap-6 sm:gap-8 relative z-10 w-full">
-          
-          <motion.div variants={itemVariants} className="flex flex-col items-center justify-center p-6 bg-surface/30 rounded-lg border border-white/5 hover:border-primary-container/50 hover:shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:-translate-y-2 transition-all duration-300 group flex-1 w-full min-h-[140px] sm:min-h-[160px]">
-            <Rocket size={40} className="text-primary-container mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10 group-hover:scale-110 transition-transform" />
-            <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary leading-none mb-2">7</div>
-            <div className="font-label-caps text-[10px] sm:text-[12px] text-on-surface-variant tracking-[0.2em] text-center uppercase">Projects Completed</div>
-          </motion.div>
-          
-          <motion.div variants={itemVariants} className="flex flex-col items-center justify-center p-6 bg-surface/30 rounded-lg border border-white/5 hover:border-primary-container/50 hover:shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:-translate-y-2 transition-all duration-300 group flex-1 w-full min-h-[140px] sm:min-h-[160px]">
-            <Cpu size={40} className="text-primary-container mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10 group-hover:scale-110 transition-transform" />
-            <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary leading-none mb-2">10+</div>
-            <div className="font-label-caps text-[10px] sm:text-[12px] text-on-surface-variant tracking-[0.2em] text-center uppercase">Technologies</div>
-          </motion.div>
-          
-          <motion.div variants={itemVariants} className="flex flex-col items-center justify-center p-6 bg-surface/30 rounded-lg border border-white/5 hover:border-primary-container/50 hover:shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:-translate-y-2 transition-all duration-300 group flex-1 w-full min-h-[140px] sm:min-h-[160px]">
-            <Award size={40} className="text-primary-container mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10 group-hover:scale-110 transition-transform" />
-            <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary leading-none mb-2">4</div>
-            <div className="font-label-caps text-[10px] sm:text-[12px] text-on-surface-variant tracking-[0.2em] text-center uppercase">Certificates</div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="flex flex-col items-center justify-center p-6 bg-surface/30 rounded-lg border border-white/5 hover:border-primary-container/50 hover:shadow-[0_0_20px_rgba(0,242,255,0.2)] hover:-translate-y-2 transition-all duration-300 group flex-1 w-full min-h-[140px] sm:min-h-[160px]">
-            <GraduationCap size={40} className="text-primary-container mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10 group-hover:scale-110 transition-transform" />
-            <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary leading-none mb-2">8+</div>
-            <div className="font-label-caps text-[10px] sm:text-[12px] text-on-surface-variant tracking-[0.2em] text-center uppercase">CGPA</div>
-          </motion.div>
-          
-        </div>
+        <motion.div variants={itemVariants} className="p-6 bg-[#0a1012]/80 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-primary-fixed/40 hover:shadow-[0_0_25px_rgba(0,242,255,0.15)] transition-all duration-300 group">
+          <Rocket size={32} className="text-primary-fixed mb-4 group-hover:scale-110 transition-transform" />
+          <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary font-extrabold leading-none mb-1">8+</div>
+          <div className="font-code-sm text-[11px] text-on-surface-variant tracking-wider uppercase">Projects Deployed</div>
+          <div className="text-[10px] text-primary-fixed-dim/60 font-mono mt-2">Full Stack, AI & Deep Learning</div>
+        </motion.div>
         
-        {/* Animated Background Gradient inside Card */}
-        <motion.div 
-          className="absolute -inset-1/2 bg-gradient-to-r from-primary-container/0 via-primary-container/10 to-primary-container/0 rotate-45 z-0"
-          animate={{ x: ["-100%", "200%"] }}
-          transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
-        />
+        <motion.div variants={itemVariants} className="p-6 bg-[#0a1012]/80 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-primary-fixed/40 hover:shadow-[0_0_25px_rgba(0,242,255,0.15)] transition-all duration-300 group">
+          <Award size={32} className="text-primary-fixed mb-4 group-hover:scale-110 transition-transform" />
+          <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary font-extrabold leading-none mb-1">4</div>
+          <div className="font-code-sm text-[11px] text-on-surface-variant tracking-wider uppercase">Credentials</div>
+          <div className="text-[10px] text-primary-fixed-dim/60 font-mono mt-2">IIT Madras & Microsoft x PW</div>
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="p-6 bg-[#0a1012]/80 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-secondary-container/40 hover:shadow-[0_0_25px_rgba(2,102,255,0.15)] transition-all duration-300 group">
+          <Cpu size={32} className="text-secondary-container mb-4 group-hover:scale-110 transition-transform" />
+          <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary font-extrabold leading-none mb-1">15+</div>
+          <div className="font-code-sm text-[11px] text-on-surface-variant tracking-wider uppercase">Core Technologies</div>
+          <div className="text-[10px] text-secondary-container/80 font-mono mt-2">LangGraph, PyTorch, React, Flask</div>
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="p-6 bg-[#0a1012]/80 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-primary-fixed/40 hover:shadow-[0_0_25px_rgba(0,242,255,0.15)] transition-all duration-300 group">
+          <GraduationCap size={32} className="text-primary-fixed mb-4 group-hover:scale-110 transition-transform" />
+          <div className="font-headline-lg text-[32px] sm:text-[40px] text-primary font-extrabold leading-none mb-1">8.0+</div>
+          <div className="font-code-sm text-[11px] text-on-surface-variant tracking-wider uppercase">Cumulative CGPA</div>
+          <div className="text-[10px] text-primary-fixed-dim/60 font-mono mt-2">IIT Madras BS Program</div>
+        </motion.div>
+      </motion.div>
+
+      {/* Realistic Academic & Engineering Profile Card */}
+      <motion.div 
+        className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#090f12]/90 border border-white/10 backdrop-blur-2xl relative overflow-hidden"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          <div className="md:col-span-2 space-y-4">
+            <div className="flex items-center gap-2 font-code-sm text-xs text-primary-fixed font-bold tracking-widest uppercase">
+              <span className="w-2 h-2 rounded-full bg-primary-fixed" />
+              BACKGROUND & ACADEMIC PEDIGREE
+            </div>
+            <h3 className="font-headline-lg text-xl sm:text-2xl text-primary font-bold leading-snug">
+              Rigorous Mathematical Foundations & Practical Machine Learning from IIT Madras
+            </h3>
+            <p className="font-body-md text-on-surface-variant text-sm sm:text-base leading-relaxed">
+              Pursuing the Bachelor of Science in Data Science and Applications at the Indian Institute of Technology Madras (IIT Madras), having earned the Diploma in Programming and the Diploma in Data Science. My work bridges empirical machine learning theory with robust, containerized software systems.
+            </p>
+          </div>
+
+          <div className="space-y-4 md:border-l md:border-white/10 md:pl-8 flex flex-col justify-center">
+            <div className="font-code-sm text-[11px] text-outline uppercase tracking-wider">// SPECIALIZED DOMAINS</div>
+            <div className="space-y-2.5 font-code-sm text-xs text-on-surface">
+              <div className="flex items-center gap-2">
+                <span className="text-primary-fixed">▹</span>
+                <span>Autonomous Agentic Workflows</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary-fixed">▹</span>
+                <span>Deep Learning & Transformers (AST/CNN)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary-fixed">▹</span>
+                <span>Multi-Source RAG & Vector Embeddings</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary-fixed">▹</span>
+                <span>Distributed Flask & Celery Backends</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Ambient Subtle Accent Border Glow */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary-fixed/30 to-transparent" />
       </motion.div>
     </section>
   );

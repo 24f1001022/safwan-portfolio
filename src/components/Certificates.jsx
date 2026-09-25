@@ -64,27 +64,29 @@ const Certificates = ({ activePdf, setActivePdf }) => {
       <div className="flex justify-between items-end mb-16">
         <div>
           <motion.span 
-            className="font-code-sm text-[12px] text-primary-fixed-dim uppercase tracking-widest"
+            className="font-code-sm text-[11px] text-primary-fixed-dim uppercase tracking-widest block mb-1"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            [ <DecrambleText text="SECURITY_CLEARANCE" delay={300} /> ]
+            [ 04 // ACCREDITED CREDENTIALS ]
           </motion.span>
           <motion.h2 
-            className="font-headline-lg text-[32px] md:text-[40px] text-primary mt-2"
-            initial={{ opacity: 0, y: 20 }}
+            className="font-headline-lg text-[32px] md:text-[40px] text-primary font-bold"
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
           >
-            <DecrambleText text="CERTIFICATES" delay={150} />
+            Verified Certifications
           </motion.h2>
+        </div>
+        <div className="hidden md:block font-code-sm text-xs text-outline font-mono">
+          ISSUED BY: <span className="text-primary-fixed">IIT MADRAS & MICROSOFT</span>
         </div>
       </div>
 
       {/* Grid of Futuristic Floating Cyber Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-4">
         {certificates.map((cert, index) => {
           const Icon = cert.icon;
           return (
@@ -94,79 +96,48 @@ const Certificates = ({ activePdf, setActivePdf }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              
-              // Infinite out-of-sync floating vertical drift
-              animate={{
-                y: [0, -12, 0]
-              }}
-              transition={{
-                y: {
-                  duration: 4 + index * 0.5, // out-of-sync drift
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }
-              }}
               whileHover={{
-                scale: 1.04,
-                y: -15, // extra lift on hover
-                boxShadow: "0 0 30px rgba(0, 242, 255, 0.25)",
-                borderColor: "rgba(0, 242, 255, 0.4)"
+                scale: 1.03,
+                y: -8,
+                boxShadow: "0 0 35px rgba(0, 242, 255, 0.2)",
+                borderColor: "rgba(0, 242, 255, 0.5)"
               }}
               onClick={() => setActivePdf(cert)}
-              className={`rounded-2xl p-6 relative group transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-[320px] bg-surface-container-low border border-white/10 ${
-                index === 0 ? 'hud-panel hud-border-glow' : 'hud-panel neon-card'
-              }`}
+              className="rounded-2xl p-6 relative group transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-[340px] bg-[#091114]/90 border border-white/10 backdrop-blur-2xl"
             >
-              {/* Laser scanning line effect on hover */}
-              <motion.div 
-                className="absolute left-0 w-full h-[2px] bg-primary-fixed shadow-[0_0_12px_#00f2ff] z-20 pointer-events-none"
-                initial={{ top: 0, opacity: 0 }}
-                whileHover={{ 
-                  top: ["0%", "100%", "0%"], 
-                  opacity: [0, 1, 1, 0] 
-                }}
-                transition={{ 
-                  repeat: Infinity, 
-                  duration: 2.0, 
-                  ease: "linear" 
-                }}
-              />
-
-              {/* Sub-Header ID indicator */}
-              <div className="flex justify-between items-center mb-6 z-10">
-                <span className="font-code-sm text-[9px] text-primary-fixed/40 tracking-[0.2em] uppercase">
-                  [ UNIT_0{cert.id} ]
+              {/* Card Sub-Header */}
+              <div className="flex justify-between items-center mb-5 z-10">
+                <span className="font-code-sm text-[10px] text-primary-fixed font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-primary-fixed/10 border border-primary-fixed/20">
+                  {cert.issuer}
                 </span>
-                <span className="text-[10px] text-primary-fixed-dim/60 font-mono tracking-widest font-semibold">
-                  DEC_SECURE
+                <span className="text-[10px] text-emerald-400 font-mono tracking-wider flex items-center gap-1 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  VERIFIED
                 </span>
               </div>
               
               {/* Floating Icon */}
-              <div className={`h-12 w-12 rounded-xl flex items-center justify-center mb-6 border transition-all duration-300 bg-surface-container/60 z-10 ${index === 0 ? 'border-primary-fixed/20 group-hover:border-primary-fixed shadow-[0_0_10px_rgba(0,242,255,0.1)]' : 'border-white/5 group-hover:border-secondary-container'}`}>
-                <Icon size={20} className={`transition-transform duration-500 group-hover:rotate-[360deg] ${index === 0 ? "text-primary-fixed" : "text-primary-fixed-dim"}`} />
+              <div className="h-12 w-12 rounded-xl flex items-center justify-center mb-5 border border-white/10 bg-white/[0.03] group-hover:border-primary-fixed/50 group-hover:bg-primary-fixed/10 transition-all duration-300 z-10">
+                <Icon size={22} className="text-primary-fixed group-hover:scale-110 transition-transform duration-300" />
               </div>
               
-              <h3 className="font-headline-lg-mobile text-base text-primary mb-2 leading-tight tracking-wide font-bold group-hover:text-primary-fixed transition-colors z-10">
+              <h3 className="font-headline-lg text-base text-primary mb-2.5 leading-snug font-bold group-hover:text-primary-fixed transition-colors z-10">
                 {cert.title}
               </h3>
-              <p className="font-body-md text-on-surface-variant text-[11px] leading-relaxed opacity-75 group-hover:opacity-95 transition-opacity mb-4 z-10">
+              <p className="font-body-md text-on-surface-variant text-xs leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity mb-4 z-10">
                 {cert.desc}
               </p>
               
               {/* Footer details */}
-              <div className="font-code-sm text-[10px] text-outline flex items-center justify-between mt-auto pt-4 border-t border-white/5 z-10">
-                <div className="flex items-center gap-1.5">
-                  <span className="material-symbols-outlined text-[14px] text-primary-fixed-dim/70">verified</span>
-                  <span className="tracking-widest text-[9px] text-primary-fixed-dim/70">VERIFIED</span>
-                </div>
-                <span className="text-[9px] text-primary-fixed/40 group-hover:text-primary-fixed group-hover:underline transition-all flex items-center gap-1 font-mono uppercase">
-                  ACCESS <ExternalLink size={10} />
+              <div className="font-code-sm text-[10px] text-outline flex items-center justify-between mt-auto pt-4 border-t border-white/10 z-10 font-mono">
+                <span className="text-outline/70">{cert.credentialId}</span>
+                <span className="text-primary-fixed-dim group-hover:text-primary-fixed transition-colors flex items-center gap-1 font-bold">
+                  INSPECT <ExternalLink size={11} />
                 </span>
               </div>
               
-              {/* Background Cyber Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-fixed/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+              {/* Subtle Ambient Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-fixed/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
             </motion.div>
           );
         })}
@@ -179,7 +150,7 @@ const Certificates = ({ activePdf, setActivePdf }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 backdrop-blur-md bg-black/75"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 backdrop-blur-md bg-black/80"
             onClick={() => setActivePdf(null)}
           >
             <motion.div
@@ -188,22 +159,19 @@ const Certificates = ({ activePdf, setActivePdf }) => {
               exit={{ scale: 0.95, y: 20, opacity: 0 }}
               transition={{ type: "spring", duration: 0.5 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl h-[85vh] md:h-[80vh] rounded-2xl border border-primary-fixed/30 bg-[#0d1515] shadow-[0_0_50px_rgba(0,242,255,0.15)] flex flex-col overflow-hidden"
+              className="relative w-full max-w-5xl h-[85vh] md:h-[80vh] rounded-3xl border border-primary-fixed/40 bg-[#091114] shadow-[0_0_60px_rgba(0,242,255,0.2)] flex flex-col overflow-hidden"
             >
-              {/* Scanline overlay effect for high-tech look */}
-              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] opacity-20" />
-
               {/* Terminal Titlebar */}
-              <div className="flex items-center justify-between px-6 py-4 bg-surface-container border-b border-primary-fixed/20 z-10 shrink-0">
+              <div className="flex items-center justify-between px-6 py-4 bg-surface-container border-b border-white/10 z-10 shrink-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-2.5 rounded-full bg-primary-fixed shadow-[0_0_8px_rgba(116,245,255,1)] animate-pulse" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse" />
                   <span className="font-code-sm text-[12px] text-primary-fixed tracking-wider font-mono">
-                    [ SYSTEM_DOSSIER: DEC_0{activePdf.id}_SECURE ]
+                    [ VERIFIED_ACADEMIC_DOSSIER: {activePdf.credentialId} ]
                   </span>
                 </div>
                 <button
                   onClick={() => setActivePdf(null)}
-                  className="p-1 rounded border border-primary-fixed/20 text-outline hover:text-primary-fixed hover:border-primary-fixed hover:bg-primary-fixed/10 transition-all cursor-pointer font-mono text-xs flex items-center gap-1.5 px-2 py-1"
+                  className="p-1 rounded-lg border border-white/10 text-outline hover:text-primary-fixed hover:border-primary-fixed hover:bg-primary-fixed/10 transition-all cursor-pointer font-mono text-xs flex items-center gap-1.5 px-3 py-1.5"
                 >
                   <X size={14} /> ESC
                 </button>
@@ -213,38 +181,38 @@ const Certificates = ({ activePdf, setActivePdf }) => {
               <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
                 
                 {/* Left Side: Metadata and Actions */}
-                <div className="w-full md:w-80 p-6 flex flex-col justify-between border-b md:border-b-0 md:border-r border-primary-fixed/10 bg-surface-container-lowest shrink-0 z-10">
+                <div className="w-full md:w-80 p-6 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10 bg-[#060a0c] shrink-0 z-10">
                   <div className="space-y-6">
                     <div>
-                      <span className="font-code-sm text-[10px] text-primary-fixed-dim/70 uppercase tracking-widest block mb-1">
-                        // SECURE_CREDENTIAL
+                      <span className="font-code-sm text-[10px] text-primary-fixed-dim uppercase tracking-widest block mb-1">
+                        // ACCREDITATION
                       </span>
                       <h3 className="font-headline-lg text-lg text-primary leading-tight font-bold">
                         {activePdf.title}
                       </h3>
                     </div>
 
-                    <div className="space-y-3 font-mono text-xs text-on-surface-variant border-t border-primary-fixed/10 pt-4">
+                    <div className="space-y-3 font-mono text-xs text-on-surface-variant border-t border-white/10 pt-4">
                       <div>
-                        <span className="text-outline uppercase block text-[9px] tracking-wider">// ISSUER</span>
+                        <span className="text-outline uppercase block text-[9px] tracking-wider">// ACCREDITED INSTITUTION</span>
                         <span className="text-primary font-semibold">{activePdf.issuer}</span>
                       </div>
                       <div>
-                        <span className="text-outline uppercase block text-[9px] tracking-wider">// STATUS</span>
-                        <span className="text-primary-fixed-dim font-semibold flex items-center gap-1.5 mt-0.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim animate-ping" />
-                          VERIFIED & VALIDATED
+                        <span className="text-outline uppercase block text-[9px] tracking-wider">// VERIFICATION STATUS</span>
+                        <span className="text-emerald-400 font-semibold flex items-center gap-1.5 mt-0.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                          VERIFIED & AUTHENTICATED
                         </span>
                       </div>
                       <div>
-                        <span className="text-outline uppercase block text-[9px] tracking-wider">// DECRYPTION_KEY</span>
-                        <span className="text-primary-fixed-dim/80 font-mono tracking-wider font-bold">
+                        <span className="text-outline uppercase block text-[9px] tracking-wider">// RECORD ID</span>
+                        <span className="text-primary-fixed font-mono tracking-wider font-bold">
                           {activePdf.credentialId}
                         </span>
                       </div>
                     </div>
 
-                    <p className="font-body-md text-xs text-on-surface-variant leading-relaxed opacity-85 border-t border-primary-fixed/10 pt-4">
+                    <p className="font-body-md text-xs text-on-surface-variant leading-relaxed opacity-85 border-t border-white/10 pt-4">
                       {activePdf.desc}
                     </p>
                   </div>

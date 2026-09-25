@@ -50,45 +50,42 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative z-10 mb-32 pt-20">
+    <section id="contact" className="relative z-10 mb-28 pt-16">
       <div className="mb-12">
         <motion.span 
-          className="font-code-sm text-[12px] text-primary-fixed-dim uppercase tracking-widest"
+          className="font-code-sm text-[11px] text-primary-fixed-dim uppercase tracking-widest block mb-1"
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
         >
-          [ INITIATE_HANDSHAKE ]
+          [ 06 // CONNECT & COLLABORATE ]
         </motion.span>
         <motion.h2 
-          className="font-headline-lg text-[32px] md:text-[40px] text-primary mt-2"
-          initial={{ opacity: 0, y: 20 }}
+          className="font-headline-lg text-[32px] md:text-[40px] text-primary font-bold"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
         >
-          COMMUNICATION_TERMINAL
+          Initiate Discussion
         </motion.h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        {/* Left Column: Form */}
         <motion.div 
-          className="hud-panel rounded-xl p-8 border border-white/5 relative overflow-hidden"
+          className="lg:col-span-7 rounded-3xl p-6 sm:p-8 bg-[#091114]/90 border border-white/10 backdrop-blur-2xl relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Decorative Corner Brackets */}
-          <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary-fixed/30 rounded-tl-lg" />
-          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary-fixed/30 rounded-br-lg" />
-          
-          <form className="space-y-8 relative z-10" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
             {error && (
               <motion.div 
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-error font-code-sm text-[12px] tracking-widest border border-error/50 bg-error/10 p-3 rounded flex items-center gap-2"
+                className="text-error font-code-sm text-xs tracking-wider border border-error/40 bg-error/10 p-3.5 rounded-xl flex items-center gap-2"
               >
                 <span className="material-symbols-outlined text-[16px]">warning</span>
                 {error}
@@ -99,18 +96,20 @@ const Contact = () => {
               <motion.div 
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-primary-fixed font-code-sm text-[12px] tracking-widest border border-primary-fixed/50 bg-primary-fixed/10 p-3 rounded flex items-center gap-2"
+                className="text-primary-fixed font-code-sm text-xs tracking-wider border border-primary-fixed/40 bg-primary-fixed/10 p-3.5 rounded-xl flex items-center gap-2"
               >
                 <span className="material-symbols-outlined text-[16px]">check_circle</span>
-                DATA_TRANSMISSION_SUCCESSFUL. AWAIT_REPLY.
+                MESSAGE TRANSMITTED SUCCESSFULLY. I WILL REPLY SHORTLY.
               </motion.div>
             )}
 
-            <div className="space-y-2 group">
-              <label className="font-code-sm text-[10px] tracking-widest text-outline block group-focus-within:text-primary-fixed transition-colors">TARGET_IDENTIFIER [NAME]</label>
+            <div className="space-y-2">
+              <label className="font-code-sm text-[11px] tracking-wider text-outline block font-mono">
+                NAME // IDENTIFIER
+              </label>
               <input 
-                className="w-full bg-surface-container-low/50 border-b border-white/10 px-4 py-3 text-on-surface font-code-sm scanline-input transition-all placeholder:text-outline/30 focus:bg-surface-container/50 disabled:opacity-50" 
-                placeholder="Enter identification..." 
+                className="w-full bg-[#050809] border border-white/10 focus:border-primary-fixed/50 rounded-xl px-4 py-3.5 text-on-surface font-code-sm text-xs transition-all placeholder:text-outline/30 focus:outline-none focus:ring-1 focus:ring-primary-fixed/30 disabled:opacity-50" 
+                placeholder="Your name or company..." 
                 type="text" 
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -118,11 +117,13 @@ const Contact = () => {
               />
             </div>
             
-            <div className="space-y-2 group">
-              <label className="font-code-sm text-[10px] tracking-widest text-outline block group-focus-within:text-primary-fixed transition-colors">ROUTING_ADDRESS [EMAIL]</label>
+            <div className="space-y-2">
+              <label className="font-code-sm text-[11px] tracking-wider text-outline block font-mono">
+                EMAIL // CONTACT ROUTE
+              </label>
               <input 
-                className="w-full bg-surface-container-low/50 border-b border-white/10 px-4 py-3 text-on-surface font-code-sm scanline-input transition-all placeholder:text-outline/30 focus:bg-surface-container/50 disabled:opacity-50" 
-                placeholder="Enter routing coordinate..." 
+                className="w-full bg-[#050809] border border-white/10 focus:border-primary-fixed/50 rounded-xl px-4 py-3.5 text-on-surface font-code-sm text-xs transition-all placeholder:text-outline/30 focus:outline-none focus:ring-1 focus:ring-primary-fixed/30 disabled:opacity-50" 
+                placeholder="name@example.com" 
                 type="email" 
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -130,11 +131,13 @@ const Contact = () => {
               />
             </div>
             
-            <div className="space-y-2 group">
-              <label className="font-code-sm text-[10px] tracking-widest text-outline block group-focus-within:text-primary-fixed transition-colors">PAYLOAD [MESSAGE]</label>
+            <div className="space-y-2">
+              <label className="font-code-sm text-[11px] tracking-wider text-outline block font-mono">
+                MESSAGE // PROJECT BRIEF
+              </label>
               <textarea 
-                className="w-full bg-surface-container-low/50 border-b border-white/10 px-4 py-3 text-on-surface font-code-sm scanline-input transition-all placeholder:text-outline/30 focus:bg-surface-container/50 resize-none disabled:opacity-50" 
-                placeholder="Encrypt message payload..." 
+                className="w-full bg-[#050809] border border-white/10 focus:border-primary-fixed/50 rounded-xl px-4 py-3.5 text-on-surface font-code-sm text-xs transition-all placeholder:text-outline/30 focus:outline-none focus:ring-1 focus:ring-primary-fixed/30 resize-none disabled:opacity-50" 
+                placeholder="Tell me about the engineering challenge, ML project, or role..." 
                 rows="4" 
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -147,63 +150,113 @@ const Contact = () => {
               whileTap={{ scale: status === 'idle' ? 0.98 : 1 }}
               onClick={handleTransmit}
               disabled={status === 'sending'}
-              className={`mt-8 flex items-center justify-center gap-3 w-full px-8 py-4 bg-transparent border rounded transition-all group relative overflow-hidden ${
+              className={`mt-6 flex items-center justify-center gap-3 w-full py-4 rounded-xl font-code-sm text-xs font-bold tracking-[0.15em] transition-all cursor-pointer ${
                 status === 'sending' 
-                  ? 'border-outline/50 text-outline cursor-wait' 
-                  : 'border-primary-fixed/50 hover:bg-primary-container/10 hover:border-primary-fixed hover:shadow-[0_0_20px_rgba(0,219,231,0.3)] text-primary-fixed'
+                  ? 'border border-outline/30 text-outline cursor-wait bg-white/[0.02]' 
+                  : 'holo-btn text-primary shadow-[0_0_25px_rgba(0,242,255,0.25)]'
               }`} 
               type="button"
             >
-              {status === 'idle' && <div className="absolute inset-0 w-full h-[1px] bg-primary-container/30 -translate-y-full group-hover:translate-y-[400px] transition-transform duration-1000 ease-linear"></div>}
-              <span className="font-code-sm text-label-caps tracking-widest z-10 text-[12px] font-bold">
-                {status === 'sending' ? 'TRANSMITTING...' : 'TRANSMIT_DATA'}
-              </span>
               {status === 'sending' ? (
-                <div className="w-4 h-4 border-2 border-outline border-t-transparent rounded-full animate-spin z-10"></div>
+                <>
+                  <div className="w-4 h-4 border-2 border-primary-fixed border-t-transparent rounded-full animate-spin"></div>
+                  <span>TRANSMITTING DATA...</span>
+                </>
               ) : (
-                <Send size={18} className="z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <>
+                  <span>TRANSMIT MESSAGE</span>
+                  <Send size={15} />
+                </>
               )}
             </motion.button>
           </form>
         </motion.div>
 
+        {/* Right Column: Direct Telemetry & Quick Contact Details */}
         <motion.div 
-          className="hidden lg:flex items-center justify-center h-full"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="lg:col-span-5 space-y-4"
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="relative w-64 h-64 flex items-center justify-center group">
-            {/* Abstract decorative rings for the terminal */}
-            <motion.div 
-              className="absolute inset-0 rounded-full border border-primary-fixed/20 shadow-[0_0_30px_rgba(116,245,255,0.1)_inset]"
-              animate={{ rotateZ: 360 }}
-              transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-            />
-            <motion.div 
-              className="absolute inset-4 rounded-full border border-secondary-container/30"
-              animate={{ rotateZ: -360 }}
-              transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-            />
-            <motion.div 
-              className="absolute inset-8 rounded-full border border-tertiary-fixed-dim/20 border-dashed"
-              animate={{ rotateZ: 360 }}
-              transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-            />
-            
-            <div className="text-center">
-              <Satellite size={48} className="text-primary-fixed-dim opacity-50 group-hover:text-primary-fixed group-hover:opacity-100 transition-all group-hover:scale-110 duration-500 mx-auto drop-shadow-[0_0_15px_rgba(116,245,255,0.5)]" />
-              <motion.div 
-                className="font-code-sm text-[10px] tracking-widest text-outline mt-4"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-              >
-                AWAITING_CONNECTION
-              </motion.div>
+          <div className="rounded-2xl p-6 bg-[#091114]/90 border border-white/10 backdrop-blur-2xl space-y-4 font-mono text-xs">
+            <div className="text-[10px] text-primary-fixed tracking-widest uppercase pb-2 border-b border-white/10 flex items-center justify-between">
+              <span>// DISPATCH_TERMINAL</span>
+              <span className="text-emerald-400 flex items-center gap-1.5 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                ONLINE
+              </span>
+            </div>
+
+            <div className="space-y-3 pt-1">
+              <div>
+                <span className="text-outline text-[10px] block">// DIRECT INBOX</span>
+                <a href="mailto:safwanhumayun011@gmail.com" className="text-primary hover:text-primary-fixed transition-colors font-semibold">
+                  safwanhumayun011@gmail.com
+                </a>
+              </div>
+
+              <div>
+                <span className="text-outline text-[10px] block">// ACADEMIC ID (IIT MADRAS)</span>
+                <span className="text-on-surface">
+                  24f1001022@ds.study.iitm.ac.in
+                </span>
+              </div>
+
+              <div>
+                <span className="text-outline text-[10px] block">// GEOGRAPHIC BASE</span>
+                <span className="text-on-surface">Chennai, India [IST // UTC+5:30]</span>
+              </div>
+
+              <div>
+                <span className="text-outline text-[10px] block">// AVAILABILITY</span>
+                <span className="text-primary-fixed font-semibold">Open to AI/ML Engineering & Agentic Roles</span>
+              </div>
             </div>
           </div>
+
+          {/* Social Profiles Grid */}
+          <div className="grid grid-cols-2 gap-3">
+            <a 
+              href="https://github.com/24f1001022" 
+              target="_blank" 
+              rel="noreferrer"
+              className="p-4 rounded-xl bg-[#091114]/80 border border-white/10 hover:border-primary-fixed/40 transition-all font-mono text-xs text-on-surface hover:text-primary-fixed flex items-center justify-between"
+            >
+              <span>GitHub</span>
+              <span className="text-outline text-[10px]">↗</span>
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/safwan-humayun-82a08423a" 
+              target="_blank" 
+              rel="noreferrer"
+              className="p-4 rounded-xl bg-[#091114]/80 border border-white/10 hover:border-secondary-container/40 transition-all font-mono text-xs text-on-surface hover:text-secondary-container flex items-center justify-between"
+            >
+              <span>LinkedIn</span>
+              <span className="text-outline text-[10px]">↗</span>
+            </a>
+            <a 
+              href="https://www.kaggle.com/safwanhumayun" 
+              target="_blank" 
+              rel="noreferrer"
+              className="p-4 rounded-xl bg-[#091114]/80 border border-white/10 hover:border-[#20BEFF]/40 transition-all font-mono text-xs text-on-surface hover:text-[#20BEFF] flex items-center justify-between"
+            >
+              <span>Kaggle</span>
+              <span className="text-outline text-[10px]">↗</span>
+            </a>
+            <a 
+              href="https://www.instagram.com/safwan_humayun/" 
+              target="_blank" 
+              rel="noreferrer"
+              className="p-4 rounded-xl bg-[#091114]/80 border border-white/10 hover:border-tertiary-fixed-dim/40 transition-all font-mono text-xs text-on-surface hover:text-tertiary-fixed-dim flex items-center justify-between"
+            >
+              <span>Instagram</span>
+              <span className="text-outline text-[10px]">↗</span>
+            </a>
+          </div>
         </motion.div>
+
       </div>
     </section>
   );
