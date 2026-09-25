@@ -192,8 +192,8 @@ const Contact = () => {
             <div className="space-y-3 pt-1">
               <div>
                 <span className="text-outline text-[10px] block">// DIRECT INBOX</span>
-                <a href="mailto:safwanhumayun011@gmail.com" className="text-primary hover:text-primary-fixed transition-colors font-semibold">
-                  safwanhumayun011@gmail.com
+                <a href="mailto:sahil.humayun95575@gmail.com" className="text-primary hover:text-primary-fixed transition-colors font-semibold">
+                  sahil.humayun95575@gmail.com
                 </a>
               </div>
 
